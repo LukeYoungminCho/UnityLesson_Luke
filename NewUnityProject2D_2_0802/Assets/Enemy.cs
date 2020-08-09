@@ -27,6 +27,18 @@ public class Enemy : Charactor
         missileInstance.transform.position = transform.position;
         missileInstance.transform.Rotate(new Vector3(0, 0, 180));
         Bullet script = missileInstance.GetComponent<Bullet>();
-        script.owner = gameObject;
+        script.ownerTag = gameObject.tag;
+    }
+
+    public override void Hitted(Bullet bullet)
+    {
+        hp -= bullet.damage;
+
+        if (hp < 0)
+        {
+            Destroy(gameObject);
+            GameManager.Instance.score++;
+            StageManager.Instance.EnemyDown(this);
+        } 
     }
 }

@@ -8,7 +8,7 @@ public class Charactor : MonoBehaviour
     public float maxHp;
     public float hp;
 
-    public void Hitted(Bullet bullet)
+    public virtual void Hitted(Bullet bullet)
     {
         hp -= bullet.damage;
 

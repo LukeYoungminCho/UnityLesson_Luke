@@ -14,7 +14,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             GameObject missileInstance = (GameObject)Instantiate(missilePrefab);
             Bullet script = missileInstance.GetComponent<Bullet>();
-            script.owner = gameObject;
+            script.ownerTag = gameObject.tag;
             missileInstance.transform.position = transform.position;
             //Destroy(missileInstance, 5f);
         }

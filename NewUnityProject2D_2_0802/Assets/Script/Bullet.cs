@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public GameObject owner;
+    public string ownerTag;
 
     public float speed = 0.5f;
     public float lifeTime = 3f;
@@ -27,9 +27,10 @@ public class Bullet : MonoBehaviour
         //transform.position += Vector3.right * speed * Time.deltaTime; // 절대좌표
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject == owner)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {   
+        
+        if ( collision.gameObject.tag == ownerTag)
             return;
 
         Charactor targetScript = collision.gameObject.GetComponent<Charactor>();
