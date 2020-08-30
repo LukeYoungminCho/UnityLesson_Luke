@@ -7,7 +7,36 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    #region 싱글톤
+    public static GameManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+        scoreText.text = "0";
+        foreach (HitEffectData data in hitEffectList)
+        {
+            data.screenEffect.SetActive(false);
+        }
+    }
+    #endregion
+
     public VideoPlayer videoPlayer;
+    public ScoringText scoreText;
+    public List<HitEffectData> hitEffectList;
+
+    public int score
+    {
+        get
+        {
+            return _score;
+        }
+        set
+        {
+            _score = value;
+            scoreText.value = value;
+        }
+    }
+    private int _score;
     private List<MakingNoteData> makingNoteDatas;
 
     private void Start()
@@ -30,6 +59,34 @@ public class GameManager : MonoBehaviour
         videoPlayer.Play();
 
     }
+
+    Dictionary<GameObject, Coroutine> hitEffectCoroutineDic = new Dictionary<GameObject, Coroutine>();
+    public void OnHitNote(eHitPercent eHit)
+    {
+        foreach (HitEffectData data in hitEffectList)
+        {
+            if(data.hitPercent != eHit)
+            {
+                continue;
+            }
+            data.screenEffect.SetActive(true);
+
+            if (hitEffectCoroutineDic.ContainsKey(data.screenEffect))
+            {
+                StopCoroutine(hitEffectCoroutineDic[data.screenEffect]);
+                hitEffectCoroutineDic[data.screenEffect] = null;
+            }
+            hitEffectCoroutineDic[data.screenEffect] = StartCoroutine(DelayDeactive(data.screenEffect , 2f));
+
+            score += data.score;
+        }
+    }
+
+    IEnumerator DelayDeactive(GameObject _screenEffect, float delayTime)
+    {
+
+    }
+
 
     private void Update()
     {

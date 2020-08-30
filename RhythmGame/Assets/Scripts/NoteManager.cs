@@ -30,7 +30,7 @@ public class NoteManager : MonoBehaviour
         noteObject.transform.localScale = Vector3.one;
 
         Note script = noteObject.GetComponent<Note>();
-        script.targetKeyCode = keyCode;
+        script.targetKeycode = keyCode;
     }
 
 }

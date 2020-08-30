@@ -65,12 +65,14 @@
   <ItemGroup>
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\HitEffectData.cs" />
     <Compile Include="Assets\Scripts\MakingNoteData.cs" />
     <Compile Include="Assets\Scripts\MakingNoteManager.cs" />
     <Compile Include="Assets\Scripts\Note.cs" />
     <Compile Include="Assets\Scripts\NoteHitter.cs" />
     <Compile Include="Assets\Scripts\NoteHitterManager.cs" />
     <Compile Include="Assets\Scripts\NoteManager.cs" />
+    <Compile Include="Assets\Scripts\ScoringText.cs" />
     <Compile Include="Assets\Scripts\SongData.cs" />
     <Compile Include="Assets\SongSelector.cs" />
     <Reference Include="Unity.Timeline.Editor">
